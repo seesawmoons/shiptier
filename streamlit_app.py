@@ -1,9 +1,9 @@
 import random
 import streamlit as st
 
-st.title("fight fight fight")
+st.title("fight fight fight 🫨")
 st.write(
-    "v1.4 - if something breaks, don't sue me! no graphics bc it's hard\n"
+    "v1.5 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
@@ -26,8 +26,8 @@ rank = [[0]*cols]*rows
 for i in range(S):
     rank[i][i] = 4
 st.text("")
-total = int(S*S - S)
-progressBar = st.text("PROGRESS : 0/" + str(total) + " ranked")
+total = int((S*S - S) / 2)
+progressBar = st.text("PROGRESS BAR")
 choose1 = st.button("i like the first one")
 chooseTie = st.button("🤷‍♀️")
 choose2 = st.button("i like the second one")
@@ -35,27 +35,41 @@ choose2 = st.button("i like the second one")
 Option1 = st.text("")
 Option2 = st.text("")
 
-progress = 0
+progress = 0.0
 
 finished = False
 selection = False
 while (not finished) and (not selection):
     finished = True
     selection = True
-    progress = total
+    progress = float(total)
     for i in range(S):
         for j in range(S):
             if rank[i][j] == 0:
                 finished = False
-                progress -= 1
+                progress -= 0.5
     P1 = random.randint(0, S-1)
-    while 0 not in rank[P1]:
-        P1 = (P1 + 1) % S
+
+    # Make sure P1 still has something
+    isEmpty = False
+    while not isEmpty:
+        for i in range(S):
+            if rank[P1][i] == 0:
+                isEmpty = True
+                break
+        if not isEmpty:
+            P1 = (P1 + 1) % S
+    
+    # Choose P2
     P2 = random.randint(0, S-1)
 
+    # Make sure P2 is different and still has something
     while (P2 == P1) or (rank[P1][P2] != 0):
         P2 = (P2 + 1) % S
-    progressBar.write("PROGRESS : " + str(progress) + "/" + str(total) + " ranked")
+
+    # Update progress
+    progressBar.write("PROGRESS : " + str(int(progress)) + "/" + str(total) + " ranked")
+    # print options
     Option1.write(ships[P1] + "!!")
     Option2.write(ships[P2] + "!!")
 
