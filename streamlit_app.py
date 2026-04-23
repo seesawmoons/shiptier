@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("fight fight fight 🫨")
 st.write(
-    "v1.6 - if something breaks, don't sue me! no graphics bc it's hard\n"
+    "v1.7 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
@@ -24,9 +24,9 @@ for x in range(len(ships)):
 rows, cols = (S, S)
 rank = [[0 for _ in range(cols)] for _ in range(rows)]
 for i in range(S):
-    rank[i][i] = 4
+    rank[i][i] = -1
 st.text("")
-total = int((S*S - S) / 2)
+total = int((S*S - S))
 progressBar = st.text("PROGRESS BAR")
 choose1 = st.button("i like the first one")
 chooseTie = st.button("🤷‍♀️")
@@ -35,19 +35,19 @@ choose2 = st.button("i like the second one")
 Option1 = st.text("")
 Option2 = st.text("")
 
-progress = 0.0
+progress = 0
 
 finished = False
 selection = False
 while (not finished) and (not selection):
     finished = True
     selection = True
-    progress = float(total)
+    progress = total
     for i in range(S):
         for j in range(S):
             if rank[i][j] == 0:
                 finished = False
-                progress -= 0.5
+                progress -= 1
 
     # Select P1
     P1 = random.randint(0, S-1)
@@ -80,14 +80,18 @@ while (not finished) and (not selection):
             rank[P1][P2] = 1
             rank[P2][P1] = 3
             for i in range(S):
-                if rank[i][P1] == 1:
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P1] == 1:
                     rank[i][P2] = 1
                     rank[P2][i] = 3
                 elif rank[i][P1] == 2:
                     rank[i][P2] = 1
                     rank[P2][i] = 3
 
-                if rank[i][P2] == 3:
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P2] == 3:
                     rank[i][P1] = 3
                     rank[P1][i] = 1
                 elif rank[i][P2] == 2:
@@ -98,7 +102,9 @@ while (not finished) and (not selection):
             rank[P1][P2] = 2
             rank[P2][P1] = 2
             for i in range(S):
-                if rank[i][P2] == 1: # Wins against P2
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P2] == 1: # Wins against P2
                     rank[i][P1] = 1
                     rank[P1][i] = 3
                 elif rank[i][P2] == 3: # Loses against P2
@@ -108,7 +114,9 @@ while (not finished) and (not selection):
                     rank[i][P1] = 2
                     rank[P1][i] = 2
                 
-                if rank[i][P1] == 1: # Wins against P1
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P1] == 1: # Wins against P1
                     rank[i][P2] = 1
                     rank[P2][i] = 3
                 elif rank[i][P1] == 3: # Loses against P1
@@ -122,14 +130,18 @@ while (not finished) and (not selection):
             rank[P2][P1] = 1
             rank[P1][P2] = 3
             for i in range(S):
-                if rank[i][P2] == 1:
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P2] == 1:
                     rank[i][P1] = 1
                     rank[P1][i] = 3
                 elif rank[i][P2] == 2:
                     rank[i][P1] = 1
                     rank[P1][i] = 3
 
-                if rank[i][P1] == 3:
+                if i == P1 or i == P2:
+                    pass
+                elif rank[i][P1] == 3:
                     rank[i][P2] = 3
                     rank[P2][i] = 1
                 elif rank[i][P1] == 2:
