@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("fight fight fight")
 st.write(
-    "if something breaks, don't sue me! no graphics bc im a loser\n"
+    "10 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
