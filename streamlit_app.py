@@ -114,9 +114,8 @@ while (not finished) and (not selection):
         else:
             selection = True
 
-while (finished):
-    st.title("the results!")
-    pass
+
+st.title("the results!")
 
 
 
