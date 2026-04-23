@@ -50,7 +50,7 @@ while (not finished) and (not selection):
         P2 = (P2 + 1) % S
     Option1.write(ships[P1] + "!!")
     Option2.write(ships[P2] + "!!")
-###
+
     while (selection):
         if choose1:
             rank[P1][P2] = 1
@@ -111,8 +111,6 @@ while (not finished) and (not selection):
                     rank[i][P2] = 3
                     rank[P2][i] = 1
             selection = False
-        else:
-            selection = True
 
 st.title("the results!")
 
