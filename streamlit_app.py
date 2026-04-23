@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("fight fight fight")
 st.write(
-    "10 - if something breaks, don't sue me! no graphics bc it's hard\n"
+    "11 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
@@ -33,7 +33,7 @@ Option2 = st.text("")
 
 # buttons go here
 finished = False
-selection = True
+selection = False
 while (not finished) and (not selection):
     finished = True
     selection = True
@@ -112,7 +112,5 @@ while (not finished) and (not selection):
                     rank[P2][i] = 1
             selection = False
 
-st.title("the results!")
-
-
+st.title("final rankings")
 
