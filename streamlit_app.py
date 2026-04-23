@@ -55,19 +55,20 @@ while (not finished) and (not selection):
         if choose1:
             rank[P1][P2] = 1
             rank[P2][P1] = 3
-            if rank[i][P1] == 1:
+            for i in range(S):
+                if rank[i][P1] == 1:
                     rank[i][P2] = 1
                     rank[P2][i] = 3
-            elif rank[i][P1] == 2:
-                rank[i][P2] = 1
-                rank[P2][i] = 3
+                elif rank[i][P1] == 2:
+                    rank[i][P2] = 1
+                    rank[P2][i] = 3
 
-            if rank[i][P2] == 3:
-                rank[i][P1] = 3
-                rank[P1][i] = 1
-            elif rank[i][P2] == 2:
-                rank[i][P1] = 3
-                rank[P1][i] = 1
+                if rank[i][P2] == 3:
+                    rank[i][P1] = 3
+                    rank[P1][i] = 1
+                elif rank[i][P2] == 2:
+                    rank[i][P1] = 3
+                    rank[P1][i] = 1
             selection = False
         elif chooseTie:
             rank[P1][P2] = 2
@@ -113,4 +114,23 @@ while (not finished) and (not selection):
             selection = False
 
 st.title("final rankings")
+maxWins = S
+noEntries = 0
+tentEntries = 0;
+wins = [0] * S
+for i in range(S):
+    for j in range(S):
+        if rank[i][j] == 1:
+            wins[i] += 1
+
+
+for i in range(S):
+    noEntries = tentEntries
+    maxWins -= 1
+    for j in range(S):
+        if wins[j] == maxWins:
+            st.write(noEntries + 1, ships[j])
+            tentEntries += 1
+
+
 
