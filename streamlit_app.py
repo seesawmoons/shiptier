@@ -23,6 +23,8 @@ for x in range(len(ships)):
 
 rows, cols = (S, S)
 rank = [[0]*cols]*rows
+for i in range(S):
+    rank[i][i] = 4
 st.text("")
 total = int((S*S - S) / 2)
 progressBar = st.text("PROGRESS : 0/" + str(total) + " ranked")
@@ -41,7 +43,7 @@ selection = False
 while (not finished) and (not selection):
     finished = True
     selection = True
-    progress = total
+    progress = total*2
     for i in range(S):
         for j in range(S):
             if rank[i][j] == 0:
