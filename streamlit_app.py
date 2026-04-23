@@ -41,8 +41,7 @@ finished = False
 selection = False
 while (not finished) and (not selection):
     finished = True
-    selection = True
-    progress = total
+    progress = int((S*S - S))
     for i in range(S):
         for j in range(S):
             if rank[i][j] == 0:
@@ -75,6 +74,7 @@ while (not finished) and (not selection):
     Option1.write(ships[P1] + "!!")
     Option2.write(ships[P2] + "!!")
 
+    selection = True
     while (selection):
         if choose1:
             rank[P1][P2] = 1
