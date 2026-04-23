@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("fight fight fight")
 st.write(
-    "v1.3 - if something breaks, don't sue me! no graphics bc it's hard\n"
+    "v1.4 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
@@ -26,7 +26,7 @@ rank = [[0]*cols]*rows
 for i in range(S):
     rank[i][i] = 4
 st.text("")
-total = int((S*S - S) / 2)
+total = int(S*S - S)
 progressBar = st.text("PROGRESS : 0/" + str(total) + " ranked")
 choose1 = st.button("i like the first one")
 chooseTie = st.button("🤷‍♀️")
@@ -37,13 +37,12 @@ Option2 = st.text("")
 
 progress = 0
 
-# buttons go here
 finished = False
 selection = False
 while (not finished) and (not selection):
     finished = True
     selection = True
-    progress = total*2
+    progress = total
     for i in range(S):
         for j in range(S):
             if rank[i][j] == 0:
