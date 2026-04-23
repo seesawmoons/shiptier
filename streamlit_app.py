@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("fight fight fight 🫨")
 st.write(
-    "v1.5 - if something breaks, don't sue me! no graphics bc it's hard\n"
+    "v1.6 - if something breaks, don't sue me! no graphics bc it's hard\n"
 )
 
 charas = ["One", "Two", "Three", "Four"]
@@ -22,7 +22,7 @@ for x in range(len(ships)):
 		
 
 rows, cols = (S, S)
-rank = [[0]*cols]*rows
+rank = [[0 for _ in range(cols)] for _ in range(rows)]
 for i in range(S):
     rank[i][i] = 4
 st.text("")
@@ -48,16 +48,18 @@ while (not finished) and (not selection):
             if rank[i][j] == 0:
                 finished = False
                 progress -= 0.5
+
+    # Select P1
     P1 = random.randint(0, S-1)
 
     # Make sure P1 still has something
-    isEmpty = False
-    while not isEmpty:
+    hasUnranked = False
+    while not hasUnranked:
         for i in range(S):
             if rank[P1][i] == 0:
-                isEmpty = True
+                hasUnranked = True
                 break
-        if not isEmpty:
+        if not hasUnranked:
             P1 = (P1 + 1) % S
     
     # Choose P2
